@@ -58,12 +58,12 @@ Clone repos in your local computer.
 ```bash
 mkdir $HOME/tmp
 cd $HOME/tmp
-git clone https://github.com/eegkno/taco.git taco_w_sub
+git clone https://github.com/eegkno/taco.git 
 git clone https://github.com/eegkno/ingredients.git
 ```
 **B)**
 
-Create a repo in your own github account with the name ```taco_w_sub``` and ```ingredients```. DO NOT initialize the repos, just click on ```Create repository```.
+Create a repo in your own github account with the name ```taco``` and ```ingredients```. DO NOT initialize the repos, just click on ```Create repository```.
 
 **C)**
 
