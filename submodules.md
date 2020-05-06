@@ -424,7 +424,6 @@ git spull
 **output:**
 
 ```
-(experiments) gkno in ~/Github/taco (develop) > git spull
 remote: Enumerating objects: 11, done.
 remote: Counting objects: 100% (11/11), done.
 remote: Compressing objects: 100% (3/3), done.
