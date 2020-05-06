@@ -12,7 +12,10 @@ Submodules can be used to work on a project that has a dependency from other pro
 2. [Working on a Project with Submodules](#Working-on-a-Project-with-Submodules)
     * [Modify main repo and submodule](#Modify-main-repo-and-submodule)
     * [Update with the latest changes](#Update-with-the-latest-changes)
-3. [Activate python develop mode](#Activate-python-develop-mode)   
+3. [Activate python develop mode](#Activate-python-develop-mode)
+4. [Remove submodule](#Remove-submodule)
+5. [Final notes](#Final-notes)
+
     
     
 
@@ -550,8 +553,14 @@ Add guacamole
 Add sauce
 ```
 
+## Remove submodule
 
 ```bash
 git submodule deinit path/to/module
 git rm path/to/module
 ```
+## Final notes
+
+* Once submodules are properly initialized and updated within a parent repository, they can be used exactly like stand-alone repositories.This means that submodules have their own branches and history.
+* When making changes to a submodule, it is important to publish these changes and then update the parent repositories reference to the submodule.
+* You should also let the main repository know that you have updated the submodule's repository, and make it use the latest commit of the repository of the submodule. If you want to have these changes in your main repository too, you should tell the main repository to use the latest commit of the submodule.
