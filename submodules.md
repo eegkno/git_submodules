@@ -170,7 +170,7 @@ Test that the library is working.
 Create file in ingredients.
 
 ```python
-#source: ingredients/ingredients/utils/all.py
+#source: ingredients/utils/all.py
 
 def onion():
     print("Add onion")
@@ -331,7 +331,7 @@ git checkout -b develop
 Then, modify the script.
 
 ```python
-#source: ingredients/ingredients/utils.py
+#source: ingredients/utils/all.py
 
 def onion():
     print("Add onion")
@@ -500,7 +500,7 @@ git add notebooks/test_taco_2.py
 git commit -m "Use ingredients as python package"
 ```
 
-Add the method souce in ```ingredients/ingredients/utils.py```.
+Add the method souce in ```ingredients/utils/all.py```.
 
 ```
 git checkout develop
@@ -508,7 +508,7 @@ git pull
 ```
 
 ```python
-#source: ingredients/ingredients/utils.py
+#source: ingredients/utils/all.py
 
 def onion():
     print("Add onion")
