@@ -12,9 +12,9 @@ Submodules can be used to work on a project that has a dependency from other pro
 2. [Working on a Project with Submodules](#Working-on-a-Project-with-Submodules)
     * [Modify main repo and submodule](#Modify-main-repo-and-submodule)
     * [Update with the latest changes](#Update-with-the-latest-changes)
-3. [Activate python develop mode](#Activate-python-develop-mode)
-
-
+3. [Activate python develop mode](#Activate-python-develop-mode)   
+    
+    
 
 ## Configure a Submodule on a Project
 
@@ -45,21 +45,44 @@ Copy these configurations in your $HOME/.gitconfig file. This configuration will
 
 **STEP 1**
 
+**A)**
+
 Clone repos in your local computer.
 
 * https://github.com/eegkno/taco
 * https://github.com/eegkno/ingredients
 
 ```bash
-git clone https://github.com/eegkno/taco.git
+mkdir $HOME/tmp
+cd $HOME/tmp
+git clone https://github.com/eegkno/taco.git taco_w_sub
 git clone https://github.com/eegkno/ingredients.git
 ```
+**B)**
 
-Create arepo in your github account and change the url to your own.
+Create a repo in your own github account with the name ```taco_w_sub``` and ```ingredients```. DO NOT initialize the repos, just click on ```Create repository```.
+
+**C)**
+
+Set the url to your own repositories.
+
 
 ```bash
-git remote set-url <remote_name> <remote_url>
+git remote set-url origin URL
+git push
 ```
+
+**D)**
+
+Check that the repos are pointing to the correct location.
+
+```bash
+git remote -v
+```
+
+**E)**
+Create develop branches in each repo
+
 
 **STEP 2**
 
@@ -67,8 +90,8 @@ Add submodule in main repo.
 
 ```bash
 cd path/to/taco
-git checkout develop
-git submodule add -b develop https://github.com/eegkno/ingredients.git src/ingredients
+git checkout -b develop
+git submodule add -b develop https://url/to/ingredients.git src/ingredients
 ```
 
 * -b develop: to indicate which branch to track
@@ -87,7 +110,7 @@ Unpacking objects: 100% (14/14), done.
 
 **STEP 3**
 
-After this operation, if you do a git status you will see two files in the Changes to be committed list: the .gitmodules file and the path to the submodule.
+After this operation, if you do a git status you will see two files in the Changes to be committed list: the .gitmodules file and the path to the submodule. 
 
 ```bash
 git status
@@ -114,7 +137,7 @@ Check module
 
 
 ```bash
-cat .gitmodules
+cat .gitmodules 
 ```
 
 **output:**
@@ -132,19 +155,19 @@ These files can now be committed to the original repository.
 ```bash
 git add .gitmodules src/ingredients
 git commit -m "Add ingredients as submodule"
-git push
+git push --set-upstream origin develop
 ```
 
 After this, the repo *taco* should have the module ingredients in src/ingredients.
 
 **STEP 5**
 
-Test that the library is working.
+Test that the library is working. 
 
 Create file in ingredients.
 
 ```python
-#source: ingredients/ingredients/utils.py
+#source: ingredients/ingredients/utils/all.py
 
 def onion():
     print("Add onion")
@@ -205,7 +228,7 @@ Untracked files:
 Add and commit changes
 
 ```bash
-git add notebooks/test_taco.py
+git add notebooks/test_taco.py 
 git ci -m "Create first taco"
 git add src/ingredients
 git ci -m "Update module"
@@ -215,7 +238,7 @@ git push
 Run  test_taco.py
 
 ```bash
-python notebooks/test_taco.py
+python notebooks/test_taco.py 
 ```
 
 
@@ -231,12 +254,12 @@ Add onion
 
 ### Modify main repo and submodule
 
-* When a project with submodules is cloned using *git clone*, it creates the directories that contain submodules, but none of the files within them.
+* When a project with submodules is cloned using *git clone*, it creates the directories that contain submodules, but none of the files within them. 
 
 * The submodule files are not created until two additional commands are run:
-   * **git submodule init** will update the local .git/config with the mapping from the .gitmodules file.
+   * **git submodule init** will update the local .git/config with the mapping from the .gitmodules file. 
    * **git submodule update** will then fetch all the data from the submodule project and check out the mapped commit in the parent project.
-
+   
 *Option 1*
 
 Order to run the commands:
@@ -252,8 +275,8 @@ git submodule update   # To update the code of your submodules
 The last three commands are equivalent to:
 
 ```bash
-git clone --recurse-submodules /url/to/repo/with/submodules
-```
+git clone --recurse-submodules url/to/repo/with/submodules
+```  
 
 **STEP 1**
 
@@ -262,8 +285,9 @@ Clonning a repo using the second option.
 **example:**
 
 ```bash
-git clone --recurse-submodules -b develop https://github.com/eegkno/taco.git taco2
-```
+cd $HOME/tmp
+git clone --recurse-submodules -b develop url/to/taco.git taco2
+```    
 **output:**
 
 ```
@@ -275,10 +299,10 @@ remote: Total 22 (delta 2), reused 22 (delta 2), pack-reused 0
 Unpacking objects: 100% (22/22), done.
 Submodule 'src/guacamole' (https://github.com/eegkno/guacamole.git) registered for path 'src/guacamole'
 Cloning into '/Users/gkno/Github/taco/src/guacamole'...
-remote: Enumerating objects: 22, done.
-remote: Counting objects: 100% (22/22), done.
-remote: Compressing objects: 100% (13/13), done.
-remote: Total 22 (delta 8), reused 19 (delta 5), pack-reused 0
+remote: Enumerating objects: 22, done.        
+remote: Counting objects: 100% (22/22), done.        
+remote: Compressing objects: 100% (13/13), done.        
+remote: Total 22 (delta 8), reused 19 (delta 5), pack-reused 0        
 Submodule path 'src/guacamole': checked out 'b3c6b30e4e77e5a887e66891732074fc783e77d0'
 ```
 
@@ -290,10 +314,10 @@ After clonning with submodules, you should be able to run:
 python notebooks/test_taco.py
 ```
 
-* Once submodules are properly initialized and updated within a parent repository, they can be used exactly like stand-alone repositories.
-* This means that submodules have their own branches and history.
+* Once submodules are properly initialized and updated within a parent repository, they can be used exactly like stand-alone repositories. 
+* This means that submodules have their own branches and history. 
 * When making changes to a submodule, it is important to publish these changes and then update the parent repositories reference to the submodule.
-* You should also let the main repository know that you've updated the submodule's repository, and make it use the latest commit of the repository of the submodule. If you make new commits inside a submodule, the main repository will still point to the old commit. If you want to have these changes in your main repository too, you should tell the main repository to use the latest commit of the submodule.
+* You should also let the main repository know that you've updated the submodule's repository, and make it use the latest commit of the repository of the submodule. If you make new commits inside a submodule, the main repository will still point to the old commit. If you want to have these changes in your main repository too, you should tell the main repository to use the latest commit of the submodule. 
 
 **STEP 2**
 
@@ -361,7 +385,7 @@ git push
 
 ### Update with the latest changes
 
-* When you add the submodule, the most recent commit of the submodule is stored in the main repository’s index.
+* When you add the submodule, the most recent commit of the submodule is stored in the main repository’s index. 
 * That means that as the code in the submodule’s repository updates, the same code will still be pulled on the repositories relying on the submodule.
 
 By running the following command, git will go into your submodules and fetch and update for you
@@ -387,7 +411,11 @@ A more convenient command is **spull**. This alias pulls all the changes from th
 git spull
 ```
 
-Move back to taco repo and the run ```git spull```.
+Move back to taco repo 
+```bash
+cd $HOME/tmp/taco
+git spull
+```
 
 
 **output:**
@@ -432,7 +460,7 @@ If the command ```git submodule update --remote``` is used without the option me
 
 ## Activate python develop mode
 
-In the last part, we will install the submodule in python developmeny mode. Development mode creates a link from the submodule in the virtual environment. This will allows to use the submodule as any other python package. Also, when we make any change in the code, the change takes effect immediately, and are tracked.
+As final step, we will install the submodule in python developmeny mode. Development mode creates a link from the submodule in the virtual environment. This will allows to use the submodule as any other python package. Also, when we make any change in the code, the change takes effect immediately, and are tracked.
 
 To install the submodule as a python package in development mode, use the command:
 
@@ -490,7 +518,7 @@ def onion():
 
 def guacamole():
     print("Add guacamole")
-
+    
 def sauce():
     print("Add sauce")
 
@@ -513,7 +541,7 @@ if __name__ == "__main__":
 
 
 
-Now, go back to *taco2*, and run ```spull``` and then ```python notebooks/test_taco_2.py```.
+Now, go back to *taco2*, and run ```spull``` and then ```python notebooks/test_taco_2.py```. 
 
 **output:**
 ```
@@ -522,8 +550,6 @@ Add guacamole
 Add sauce
 ```
 
-
-## Deleting submodule
 
 ```bash
 git submodule deinit path/to/module
