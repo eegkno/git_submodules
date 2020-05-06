@@ -232,9 +232,9 @@ Add and commit changes
 
 ```bash
 git add notebooks/test_taco.py 
-git ci -m "Create first taco"
+git commit -m "Create first taco"
 git add src/ingredients
-git ci -m "Update module"
+git commit -m "Update module"
 git push
 ```
 
@@ -317,11 +317,6 @@ After clonning with submodules, you should be able to run:
 python notebooks/test_taco.py
 ```
 
-* Once submodules are properly initialized and updated within a parent repository, they can be used exactly like stand-alone repositories. 
-* This means that submodules have their own branches and history. 
-* When making changes to a submodule, it is important to publish these changes and then update the parent repositories reference to the submodule.
-* You should also let the main repository know that you've updated the submodule's repository, and make it use the latest commit of the repository of the submodule. If you make new commits inside a submodule, the main repository will still point to the old commit. If you want to have these changes in your main repository too, you should tell the main repository to use the latest commit of the submodule. 
-
 **STEP 2**
 
 Doing some changes in taco and ingredients.
@@ -380,7 +375,7 @@ Add and commit changes
 
 ```bash
 git add notebooks/test_taco.py
-git ci -m "Add new ingredient"
+git commit -m "Add new ingredient"
 git add src/ingredients
 git commit -m "Update module"
 git push
@@ -540,8 +535,6 @@ if __name__ == "__main__":
     guacamole()
     sauce()
 ```
-
-
 
 Now, go back to *taco2*, and run ```spull``` and then ```python notebooks/test_taco_2.py```. 
 
