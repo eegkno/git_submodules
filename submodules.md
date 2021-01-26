@@ -283,7 +283,7 @@ git clone --recurse-submodules url/to/repo/with/submodules
 
 **STEP 1**
 
-Clonning a repo using the second option.
+Cloning a repo using the second option.
 
 **example:**
 
@@ -462,13 +462,13 @@ As final step, we will install the submodule in python developmeny mode. Develop
 To install the submodule as a python package in development mode, use the command:
 
 ```bash
-pip install -e src/ingredients
+pip install -e path/to/submodule
 ```
 
-Let's install ingredients as a python package, ru the following package.
+Let's install ingredients as a python package, run the following package.
 
 ```bash
-pip install -e path/to/submodule
+pip install -e src/ingredients
 ```
 
 Let's create ```taco/notebooks/test_taco_2.py``` as follows. By adding the module as a python package, we do not need to include the submodule in ```sys.path``.
