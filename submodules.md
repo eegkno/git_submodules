@@ -548,8 +548,10 @@ Add sauce
 ## Remove submodule
 
 ```bash
-git submodule deinit path/to/module
-git rm path/to/module
+git submodule deinit <path_to_submodule>
+git rm <path_to_submodule>
+git commit-m "Remove submodule"
+rm -rf .git/modules/<path_to_submodule>
 ```
 ## Final notes
 
